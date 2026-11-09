@@ -95,7 +95,11 @@
 
 <script>
   const qs = new URLSearchParams(location.search);
-  const k = (qs.get('k') || '').trim();
+  // 只读 friends key 直接内置：这样只发 https://syncmusic.cevtuo.com/ 就能进，
+  // 不用再带 ?k=。⚠️ 页面是公开的，等于这个只读 key 公开；控制台 access key
+  // 不在这里。换 key 时改这一行并重新 push 即可。
+  const DEFAULT_KEY = 'HWU0cQes8K1o';
+  const k = (qs.get('k') || '').trim() || DEFAULT_KEY;
   const APP = 'http://120.77.27.128:8081/listen?k=';
   const hint = document.getElementById('hint');
   const direct = document.getElementById('direct');
